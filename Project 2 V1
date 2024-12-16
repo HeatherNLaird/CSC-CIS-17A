@@ -1,0 +1,180 @@
+// project 2 game for csc 17A
+// Heather Laird
+// Simple Pokemon Battle Simulator
+
+#include <cstdlib>
+#include <iostream>
+#include <string>
+#include <iomanip>
+#include <vector>
+using namespace std;
+
+//character class
+class Character 
+{
+private:
+  
+public: 
+    Character(); // constructor
+    string name; // character name
+    char gender; // character gender
+    int age; // character age
+   ~Character() // deconstructor
+   {}
+};
+
+// pokemon class
+class Pokemon
+{
+protected:
+    string name;
+    int hp;
+    int level;
+    
+public:
+   Pokemon();
+   string moves;
+};
+
+// functions
+void menu();
+void Pokeinfo(int);
+void Pick(int);
+
+
+
+
+
+int main() 
+{
+    //variables
+    int choice;
+    int info;
+    char pickPoke;
+    char confirm;
+    Character player; // object for character class
+  
+    
+    // start menu
+    do
+    {
+        cout << "***************************************" << endl;
+        cout << "*                                     *" << endl;
+        cout << "* WELCOME TO POKEMON BATTLE SIMULATOR *" << endl;
+        cout << "* Press 1 to start.                   *" << endl;
+        cin >> choice; 
+    }
+    while(choice != 1);
+    
+    cin.ignore();
+    // create character
+    cout << "***** Create a Character ******" << endl;
+    cout << "What is your name?" << endl;
+    getline(cin, player.name);
+    cout << "What is your gender, " << player.name << ", F or M?" << endl;
+    cin >> player.gender;
+    cout << "How old are you, " << player.name << "?" << endl;
+    cin >> player.age;
+    cout << "Please confirm player information: " << endl;
+    cout << "Player Name: " << player.name << endl;
+    cout << "Player Gender: " << player.gender << endl;
+    cout << "Player Age: " << player.age << endl;
+    
+    // confirm information
+    cout << "Is this information correct? Y or N?" << endl;
+    cin >> confirm;
+    
+    // validate information if correct state rules
+    if (confirm == 'Y' || 'y')
+    {
+    cout << "Welcome to Pokemon Battle Simulator, " << player.name << "!" << endl;
+    cout << "*********************" << endl;
+    cout << "* RULES OF THE GAME *" << endl;
+    cout << "You will pick a starter Pokemon to use in battle. Each starter has a different type and moveset." << endl;
+    cout << "Once you pick a starter, you will enter the wild area where you can encounter a random Pokemon!" << endl;
+    cout << "When a Pokemon is encountered, you can decide to battle the wild Pokemon, or run away and continue walking through the wild area." << endl;
+    cout << "If you decide to battle a Pokemon, you can pick moves from your starters move pool to attack the wild Pokemon." << endl;
+    }
+    
+    do
+    {
+    menu();
+    cin >> info;
+    
+    if (info < 1 || info > 3)
+    cout << "Please pick a valid option" << endl;
+
+    Pokeinfo(info);
+    cin >> pickPoke;
+    }
+    while (pickPoke == 'N');
+    
+
+    return 0;
+}
+
+//constructor
+Character::Character()
+{   
+}
+// functions
+void menu()
+{
+    cout << "Now it is time to pick a starter pokemon." << endl;
+    cout << "Your choices are: " << endl;
+    cout << "1. Charmander" << endl;
+    cout << "2. Squirtle" << endl;
+    cout << "3. Bulbasaur" << endl;
+    cout << "Pick a starter to show more information, all Pokemon start with 100 HP." << endl;
+}
+
+// pokemon info menu
+void Pokeinfo(int info)
+{
+    switch(info)
+    {
+        case 1 : cout << "Charmander || Pokemon #004"  << endl;
+        cout << "Type: Fire" << endl;
+        cout << "Level: 10" << endl;
+        cout << "Moveset" << endl;
+        cout << "Move" << setw(10) << "Power" << setw(8) << "Type" << endl;
+        cout << endl;
+        cout << "[Scratch] 40 |Normal|" << endl;
+        cout << "[Ember] 40 |Fire|" << endl;
+        cout << "[Fire Fang] 65 |Fire|" << endl;
+        cout << "[Slash] 70 |Normal|" << endl;
+        cout << endl;
+        cout << "Would you like to pick Charmander? Y or N?" << endl;
+        break;
+        
+        case 2: cout << "Squirtle || Pokemon #007" << endl;
+        cout << "Type: Water" << endl;
+        cout << "Level 10" << endl;
+        cout << "Moveset" << endl;
+        cout << "Move" << setw(10) << "Power" << setw(8) << "Type" << endl;
+        cout << endl;
+        cout << "[Tackle] 40 |Normal|" << endl;
+        cout << "[Water Gun] 40 |Water|" << endl;
+        cout << "[Water Pulse] 60 |Water|" << endl;
+        cout << "[Protect] -- |Normal|" << endl;
+        cout << endl;
+        cout << "Would you like to pick Squirtle? Y or N?" << endl;
+        break;
+        
+        case 3: cout << "Bulbasaur || Pokemon #001" << endl;
+        cout << "Type: Grass" << endl;
+        cout << "Level: 10" << endl;
+        cout << "Moveset" << endl;
+        cout << "Move" << setw(10) << "Power" << setw(8) << "Type" << endl;
+        cout << endl;
+        cout << "[Tackle] 40 |Normal|" << endl;
+        cout << "[Vine Whip] 45 |Grass|" << endl;
+        cout << "[Razor Leaf] 55 |Grass|" << endl;
+        cout << "[Seed Bomb] 80 |Grass|" << endl;
+        cout << endl;
+        cout << "Would you like to pick Bulbasaur? Y or N?" << endl;
+        break;
+    }
+}
+
+   
